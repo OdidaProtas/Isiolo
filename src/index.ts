@@ -40,7 +40,7 @@ createConnection()
       );
     });
 
-    app.listen(process.env.PORT);
+    app.listen(5000);
 
     console.log("Express server has started on port 3000");
   })

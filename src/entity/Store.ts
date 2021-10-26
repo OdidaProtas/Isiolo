@@ -13,11 +13,14 @@ export default class Store {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({
+    unique:true
+  })
   name: string;
 
   @Column({
     type: "timestamptz",
+    nullable:true
   })
   created: string;
 

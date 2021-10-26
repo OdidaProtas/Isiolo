@@ -19,7 +19,10 @@ export class StoreController {
   }
 
   async save(request: Request, response: Response, next: NextFunction) {
-    const promise = this.storeRepository.save(request.body);
+    const promise = this.storeRepository.save({
+      ...request.body,
+      owner: request["user"],
+    });
     const [res, err] = await retryRefactor(promise);
     if (res) return res;
     return response.status(403).send(err.driverError.detail);
@@ -27,6 +30,25 @@ export class StoreController {
 
   async remove(request: Request, response: Response, next: NextFunction) {
     let storeToRemove = await this.storeRepository.findOne(request.params.id);
-    await this.storeRepository.remove(storeToRemove);
+    const promise = this.storeRepository.remove(storeToRemove);
+    const [res, e] = await retryRefactor(promise);
+    if (res) return res;
+    return response.sendStatus(404);
+  }
+
+  async byName(request: Request, response: Response, next: NextFunction) {
+    let promise = this.storeRepository.findOne({ name: request.params.name });
+    const [store, e] = await retryRefactor(promise);
+    if (store) return false;
+    return true;
+  }
+
+  async byOwner(request: Request, response: Response, next: NextFunction) {
+    const promise = this.storeRepository.find({
+      where: { owner: request["user"] },
+    });
+    const [stores, err] = await retryRefactor(promise);
+    if (stores) return response.send(stores);
+    return response.sendStatus(403);
   }
 }
