@@ -15,7 +15,12 @@ export class StoreController {
   }
 
   async one(request: Request, response: Response, next: NextFunction) {
-    return this.storeRepository.findOne(request.params.id);
+    const promise = this.storeRepository.findOne(request.params.id, {
+      relations: ["profile"],
+    });
+    const [res] = await retryRefactor(promise);
+    if (res) return res;
+    else return response.sendStatus(404).send("An error occured");
   }
 
   async save(request: Request, response: Response, next: NextFunction) {

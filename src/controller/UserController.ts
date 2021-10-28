@@ -28,11 +28,12 @@ export class UserController {
     });
     const [res, err] = await retryRefactor(promise);
     if (res) return res;
+    console.log(err)
     if (err.driverError.detail.includes("already exists"))
       return response
         .status(403)
         .send(`Email ${request.body.email} already registered`);
-    return response.status(403).send(err.driverError.detail);
+    return response.status(403).send(err);
   }
 
   async remove(request: Request, response: Response, next: NextFunction) {

@@ -1,4 +1,6 @@
 import { StoreController } from "./controller/StoreController";
+import StoreProfileController from "./controller/StoreProfileController";
+import StoreProfile from "./controller/StoreProfileController";
 import { UserController } from "./controller/UserController";
 
 export const Routes = [
@@ -70,6 +72,20 @@ export const Routes = [
     route: "/stores/:id",
     controller: StoreController,
     action: "remove",
+    isAuthenticated: true,
+  },
+  {
+    method: "get",
+    route: "/stores/:id",
+    controller: StoreController,
+    action: "one",
+    isAuthenticated: true,
+  },
+  {
+    method: "post",
+    route: "/stores/:id",
+    controller: StoreProfileController,
+    action: "save",
     isAuthenticated: true,
   },
 ];
