@@ -9,7 +9,9 @@ export class Product {
   @Column()
   title: string;
 
-  @Column()
+  @Column({
+    nullable:true
+  })
   desc: string;
 
   @ManyToOne(() => Store, (store) => store.products)

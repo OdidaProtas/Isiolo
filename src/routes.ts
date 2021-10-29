@@ -96,4 +96,11 @@ export const Routes = [
     action: "save",
     isAuthenticated: false,
   },
+  {
+    method: "get",
+    route: "/my-products/:id",
+    controller: ProductController,
+    action: "byStore",
+    isAuthenticated: false,
+  },
 ];

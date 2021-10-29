@@ -45,7 +45,7 @@ export class StoreController {
     let promise = this.storeRepository.findOne({ name: request.params.name });
     const [store, e] = await retryRefactor(promise);
     if (store) return false;
-    return true;
+      return true;
   }
 
   async byOwner(request: Request, response: Response, next: NextFunction) {

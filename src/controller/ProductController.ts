@@ -13,15 +13,15 @@ export class ProductController {
       relations: ["owner"],
     });
     const [store, e] = await retryRefactor(findStore);
-    if (!store || request["user"] !== store.owner || e)
-      return response.sendStatus(403).send("Could not authorize");
+    if (e) return response.sendStatus(403).send("Could not authorize");
     const saveProduct = this.productRepository.save({
       ...request.body,
       store: store,
     });
     const [product, err] = await retryRefactor(saveProduct);
+    console.log(product);
     if (product) return product;
-    return response.sendStatus(403).send("An error occured");
+    else return response.sendStatus(403).send("An error occured");
   }
 
   async byStore(request: Request, response: Response, next: NextFunction) {
