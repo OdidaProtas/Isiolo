@@ -4,10 +4,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Product } from "./Product";
 import { StoreProfile } from "./StoreProfile";
 import { User } from "./User";
 
@@ -17,20 +19,23 @@ export default class Store {
   id: string;
 
   @Column({
-    unique:true
+    unique: true,
   })
   name: string;
 
   @Column({
     type: "timestamptz",
-    nullable:true
+    nullable: true,
   })
   created: string;
 
-  @OneToOne(()=>StoreProfile)
+  @OneToOne(() => StoreProfile)
   @JoinColumn()
-  profile:StoreProfile
+  profile: StoreProfile;
 
   @ManyToOne(() => User, (user) => user.stores)
   owner: User;
+
+  @OneToMany(() => Product, (product) => product.store)
+  products: Product[];
 }

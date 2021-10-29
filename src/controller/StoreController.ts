@@ -31,7 +31,7 @@ export class StoreController {
     const [res, err] = await retryRefactor(promise);
     if (res) return res;
     return response.status(403).send(err.driverError.detail);
-  }
+  } 
 
   async remove(request: Request, response: Response, next: NextFunction) {
     let storeToRemove = await this.storeRepository.findOne(request.params.id);
