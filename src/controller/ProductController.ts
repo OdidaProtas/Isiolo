@@ -19,9 +19,15 @@ export class ProductController {
       store: store,
     });
     const [product, err] = await retryRefactor(saveProduct);
-    console.log(product);
     if (product) return product;
     else return response.sendStatus(403).send("An error occured");
+  }
+
+  async update(request: Request, response: Response, next: NextFunction) {
+    const promise = this.productRepository.update(
+      { id: request.params.id },
+      request.body
+    );
   }
 
   async byStore(request: Request, response: Response, next: NextFunction) {

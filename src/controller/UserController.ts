@@ -28,7 +28,6 @@ export class UserController {
     });
     const [res, err] = await retryRefactor(promise);
     if (res) return res;
-    console.log(err)
     if (err.driverError.detail.includes("already exists"))
       return response
         .status(403)
