@@ -28,6 +28,9 @@ export class ProductController {
       { id: request.params.id },
       request.body
     );
+    const [res, e] = await retryRefactor(promise);
+    if (res) return res;
+    else return response.sendStatus(403).send(e);
   }
 
   async byStore(request: Request, response: Response, next: NextFunction) {

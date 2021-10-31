@@ -104,7 +104,7 @@ export const Routes = [
     isAuthenticated: true,
   },
   {
-    method: "update",
+    method: "patch",
     route: "/products/:id",
     controller: ProductController,
     action: "update",
