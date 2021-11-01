@@ -1,4 +1,18 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Collections } from "./Collections";
+import { ProductMedia } from "./ProductMedia";
+import { ProductSeo } from "./ProductSeo";
+import { ProductTags } from "./ProductTags";
+import { ProductTheme } from "./ProductTheme";
+import ProductVariants from "./ProductVariants";
 import Store from "./Store";
 
 export enum ProductStatus {
@@ -27,6 +41,93 @@ export class Product {
   })
   status: ProductStatus;
 
+  @Column({
+    nullable: true,
+  })
+  vendor: string;
+
+  @Column({
+    nullable: true,
+  })
+  productType: string;
+
+  @Column({
+    nullable: true,
+  })
+  availability: string;
+
+  @Column({
+    nullable: true,
+  })
+  price: string;
+
+  @Column({
+    nullable: true,
+  })
+  compareAtPrice: string;
+
+  @Column({
+    nullable: true,
+  })
+  costPerItem: string;
+
+  @Column({
+    default: false,
+  })
+  isTaxed: boolean;
+
+  @Column({ default: false })
+  trackQuantity: boolean;
+
+  @Column({
+    default: 0,
+  })
+  sku: number;
+
+  @Column({
+    nullable: true,
+  })
+  barcode: string;
+
+  @Column({
+    default: false,
+  })
+  isPhysical: boolean;
+
+  @Column({
+    nullable: true,
+  })
+  weight: string;
+
+  @Column({
+    nullable: true,
+  })
+  unit: string;
+
+  @Column({
+    default: false,
+  })
+  hasOptions: boolean;
+
+  @ManyToOne(() => ProductVariants, (variant) => variant.product)
+  variants: ProductVariants[];
+
   @ManyToOne(() => Store, (store) => store.products)
   store: Store;
+
+  @OneToMany(() => Collections, (coll) => coll.product)
+  collections: Collections[];
+
+  @OneToMany(() => ProductTags, (tag) => tag.product)
+  tags: ProductTags[];
+
+  @OneToMany(() => ProductMedia, (media) => media.product)
+  media: ProductMedia[];
+
+  @ManyToOne(() => ProductTheme)
+  theme: ProductTheme;
+
+  @OneToOne(() => ProductSeo, (seo) => seo.product)
+  @JoinColumn()
+  seo: ProductSeo;
 }
