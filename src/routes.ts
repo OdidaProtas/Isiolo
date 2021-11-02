@@ -1,4 +1,5 @@
 import { ProductController } from "./controller/ProductController";
+import ProductMediaController from "./controller/ProductMediaController";
 import { StoreController } from "./controller/StoreController";
 import StoreProfileController from "./controller/StoreProfileController";
 import StoreProfile from "./controller/StoreProfileController";
@@ -108,6 +109,20 @@ export const Routes = [
     route: "/products/:id",
     controller: ProductController,
     action: "update",
+    isAuthenticated: true,
+  },
+  {
+    method: "post",
+    route: "/product-media/:id",
+    controller: ProductMediaController,
+    action: "save",
+    isAuthenticated: true,
+  },
+  {
+    method: "get",
+    route: "/product-media/:id",
+    controller: ProductMediaController,
+    action: "all",
     isAuthenticated: true,
   },
 ];
