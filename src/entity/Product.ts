@@ -119,7 +119,7 @@ export class Product {
   })
   hasOptions: boolean;
 
-  @ManyToOne(() => ProductVariants, (variant) => variant.product)
+  @OneToMany(() => ProductVariants, (variant) => variant.product)
   variants: ProductVariants[];
 
   @ManyToOne(() => Store, (store) => store.products)

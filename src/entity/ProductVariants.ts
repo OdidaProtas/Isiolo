@@ -1,7 +1,7 @@
 import {
   Column,
   Entity,
-  ManyToMany,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -19,6 +19,6 @@ export default class ProductVariants {
   @OneToMany(() => VariantOptions, (options) => options.variant)
   options: VariantOptions[];
 
-  @ManyToMany(() => Product, (product) => product.variants)
+  @ManyToOne(() => Product, (product) => product.variants)
   product: Product;
 }

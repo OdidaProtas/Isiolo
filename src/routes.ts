@@ -1,5 +1,6 @@
 import { ProductController } from "./controller/ProductController";
 import ProductMediaController from "./controller/ProductMediaController";
+import ProductVariantController from "./controller/ProductVariantController";
 import { StoreController } from "./controller/StoreController";
 import StoreProfileController from "./controller/StoreProfileController";
 import StoreProfile from "./controller/StoreProfileController";
@@ -131,5 +132,19 @@ export const Routes = [
     controller: ProductController,
     action: "remove",
     isAuthenticated: true,
-  }
+  },
+  {
+    method: "post",
+    route: "/variants/:id",
+    controller: ProductVariantController,
+    action: "save",
+    isAuthenticated: true,
+  },
+  {
+    method: "get",
+    route: "/variants/:id",
+    controller: ProductVariantController,
+    action: "all",
+    isAuthenticated: true,
+  },
 ];
