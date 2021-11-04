@@ -82,6 +82,16 @@ export class Product {
   @Column({
     default: 0,
   })
+  quantity: number;
+
+  @Column({
+    default:false
+  })
+  sellOutOfStock:boolean;
+
+  @Column({
+    default: 0,
+  })
   sku: number;
 
   @Column({
