@@ -125,4 +125,11 @@ export const Routes = [
     action: "all",
     isAuthenticated: true,
   },
+  {
+    method: "delete",
+    route: "/product/:id",
+    controller: ProductController,
+    action: "remove",
+    isAuthenticated: true,
+  }
 ];

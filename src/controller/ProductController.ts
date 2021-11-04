@@ -33,6 +33,13 @@ export class ProductController {
     else return response.sendStatus(403).send(e);
   }
 
+  async remove(request: Request, response: Response, next: NextFunction) {
+    const productToRemove = await this.productRepository.findOne(
+      request.params.id
+    );
+    await this.productRepository.remove(productToRemove);
+  }
+
   async byStore(request: Request, response: Response, next: NextFunction) {
     const promise = this.productRepository.find({
       store: { id: request.params.id },
