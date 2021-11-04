@@ -85,9 +85,9 @@ export class Product {
   quantity: number;
 
   @Column({
-    default:false
+    default: false,
   })
-  sellOutOfStock:boolean;
+  sellOutOfStock: boolean;
 
   @Column({
     default: 0,
@@ -137,7 +137,16 @@ export class Product {
   @ManyToOne(() => ProductTheme)
   theme: ProductTheme;
 
-  @OneToOne(() => ProductSeo, (seo) => seo.product)
-  @JoinColumn()
-  seo: ProductSeo;
+  @Column({
+    nullable: true,
+  })
+  seoTitle: string;
+  @Column({
+    nullable: true,
+  })
+  seoDesc: string;
+  @Column({
+    nullable: true,
+  })
+  seoLink: string;
 }

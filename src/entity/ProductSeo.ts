@@ -21,6 +21,4 @@ export class ProductSeo {
   })
   urlHandle: string;
 
-  @OneToOne(() => Product, (product) => product.seo)
-  product: Product;
 }
