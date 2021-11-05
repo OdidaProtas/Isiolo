@@ -38,7 +38,7 @@ export class StoreController {
     const promise = this.storeRepository.remove(storeToRemove);
     const [res, e] = await retryRefactor(promise);
     if (res) return res;
-    return response.sendStatus(404);
+    else return response.sendStatus(404);
   }
 
   async byName(request: Request, response: Response, next: NextFunction) {
