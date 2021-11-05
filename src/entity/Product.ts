@@ -119,8 +119,10 @@ export class Product {
   })
   hasOptions: boolean;
 
-  @OneToMany(() => ProductVariants, (variant) => variant.product)
-  variants: ProductVariants[];
+  @Column({
+    nullable: true,
+  })
+  options: string;
 
   @ManyToOne(() => Store, (store) => store.products)
   store: Store;

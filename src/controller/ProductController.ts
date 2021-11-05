@@ -13,6 +13,7 @@ export class ProductController {
       relations: ["owner"],
     });
     const [store, e] = await retryRefactor(findStore);
+    console.log(request.body)
     if (e) return response.sendStatus(403).send("Could not authorize");
     const saveProduct = this.productRepository.save({
       ...request.body,

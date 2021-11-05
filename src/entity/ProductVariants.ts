@@ -19,6 +19,6 @@ export default class ProductVariants {
   @OneToMany(() => VariantOptions, (options) => options.variant)
   options: VariantOptions[];
 
-  @ManyToOne(() => Product)
-  product: Product;
+  // @ManyToOne(() => Product)
+  // product: Product;
 }
