@@ -35,6 +35,7 @@ export class StoreController {
 
   async remove(request: Request, response: Response, next: NextFunction) {
     let storeToRemove = await this.storeRepository.findOne(request.params.id);
+    console.log(storeToRemove)
     const promise = this.storeRepository.remove(storeToRemove);
     const [res, e] = await retryRefactor(promise);
     if (res) return res;
