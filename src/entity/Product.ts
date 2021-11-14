@@ -94,7 +94,7 @@ export class Product {
   })
   sku: number;
 
-  @Column({
+  @Column({ 
     nullable: true,
   })
   barcode: string;
@@ -124,7 +124,7 @@ export class Product {
   })
   options: string;
 
-  @ManyToOne(() => Store, (store) => store.products)
+  @ManyToOne(() => Store, (store) => store.products, {orphanedRowAction:"delete"})
   store: Store;
 
   @OneToMany(() => Collections, (coll) => coll.product)

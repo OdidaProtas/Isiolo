@@ -31,13 +31,13 @@ export class StoreController {
     const [res, err] = await retryRefactor(promise);
     if (res) return res;
     return response.status(403).send(err.driverError.detail);
-  } 
+  }
 
   async remove(request: Request, response: Response, next: NextFunction) {
     let storeToRemove = await this.storeRepository.findOne(request.params.id);
-    console.log(storeToRemove)
     const promise = this.storeRepository.remove(storeToRemove);
     const [res, e] = await retryRefactor(promise);
+    console.log(e)
     if (res) return res;
     else return response.sendStatus(404);
   }
@@ -46,7 +46,7 @@ export class StoreController {
     let promise = this.storeRepository.findOne({ name: request.params.name });
     const [store, e] = await retryRefactor(promise);
     if (store) return false;
-      return true;
+    return true;
   }
 
   async byOwner(request: Request, response: Response, next: NextFunction) {
