@@ -1,3 +1,4 @@
+import { CollectionsController } from "./controller/CollectionsController";
 import { ProductController } from "./controller/ProductController";
 import ProductMediaController from "./controller/ProductMediaController";
 import ProductVariantController from "./controller/ProductVariantController";
@@ -7,7 +8,6 @@ import StoreProfile from "./controller/StoreProfileController";
 import { SupplierController } from "./controller/SupplierController";
 import { TransferController } from "./controller/TransferController";
 import { UserController } from "./controller/UserController";
-import { Collections } from "./entity/Collections";
 
 export const Routes = [
   {
@@ -174,7 +174,7 @@ export const Routes = [
   {
     method: "post",
     route: "/collections",
-    controller: Collections,
+    controller: CollectionsController,
     action: "save",
     isAuthenticated: true,
   },
@@ -182,7 +182,7 @@ export const Routes = [
   {
     method: "get",
     route: "/collections/:id",
-    controller: TransferController,
+    controller: CollectionsController,
     action: "all",
     isAuthenticated: true,
   },
