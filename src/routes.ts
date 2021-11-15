@@ -7,6 +7,7 @@ import StoreProfile from "./controller/StoreProfileController";
 import { SupplierController } from "./controller/SupplierController";
 import { TransferController } from "./controller/TransferController";
 import { UserController } from "./controller/UserController";
+import { Collections } from "./entity/Collections";
 
 export const Routes = [
   {
@@ -169,9 +170,18 @@ export const Routes = [
     controller: TransferController,
     action: "save",
     isAuthenticated: true,
-  },{
+  },
+  {
+    method: "post",
+    route: "/collections",
+    controller: Collections,
+    action: "save",
+    isAuthenticated: true,
+  },
+  ,
+  {
     method: "get",
-    route: "/transfer/:id",
+    route: "/collections/:id",
     controller: TransferController,
     action: "all",
     isAuthenticated: true,
