@@ -9,6 +9,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Collections } from "./Collections";
 import { Product } from "./Product";
 import { StoreProfile } from "./StoreProfile";
 import Supplier from "./Supplier";
@@ -50,4 +51,7 @@ export default class Store {
 
   @OneToMany(() => Transfer, (t) => t.store)
   transfers: Transfer[];
+
+  @OneToMany(() => Collections, (c) => c.store)
+  collections: Collections[];
 }
