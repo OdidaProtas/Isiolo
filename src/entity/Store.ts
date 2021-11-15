@@ -10,6 +10,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Collections } from "./Collections";
+import Customer from "./Customer";
 import { GiftCard } from "./GiftCard";
 import { Product } from "./Product";
 import { StoreProfile } from "./StoreProfile";
@@ -58,4 +59,7 @@ export default class Store {
 
   @OneToMany(() => GiftCard, (G) => G.store)
   giftCards: GiftCard[];
+
+  @OneToMany(() => Customer, (c) => c.store)
+  customers: Customer[];
 }

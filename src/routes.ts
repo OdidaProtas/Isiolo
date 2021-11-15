@@ -1,4 +1,5 @@
 import { CollectionsController } from "./controller/CollectionsController";
+import { CustomerController } from "./controller/CustomerController";
 import { GiftCardController } from "./controller/GiftCardContoller";
 import { ProductController } from "./controller/ProductController";
 import ProductMediaController from "./controller/ProductMediaController";
@@ -191,12 +192,26 @@ export const Routes = [
     route: "/gift-cards",
     controller: GiftCardController,
     action: "save",
-    isAuthenticated: true,
+    isAuthenticated: true,  
   },
   {
     method: "get",
     route: "/gift-cards/:id",
     controller: GiftCardController,
+    action: "all",
+    isAuthenticated: true,
+  },
+  {
+    method: "post",
+    route: "/customers",
+    controller: CustomerController,
+    action: "save",
+    isAuthenticated: true,  
+  },
+  {
+    method: "get",
+    route: "/customers/:id",
+    controller: CustomerController,
     action: "all",
     isAuthenticated: true,
   },
