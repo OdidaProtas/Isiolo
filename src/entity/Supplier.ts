@@ -1,5 +1,12 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import Store from "./Store";
+import { Transfer } from "./Transfer";
 
 @Entity()
 export default class Supplier {
@@ -47,4 +54,7 @@ export default class Supplier {
 
   @ManyToOne(() => Store, (s) => s.suppliers)
   store: Store;
+
+  @OneToMany(() => Transfer, (t) => t.supplier)
+  transfers: Transfer[];
 }

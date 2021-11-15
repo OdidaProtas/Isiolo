@@ -12,7 +12,9 @@ import {
 import { Product } from "./Product";
 import { StoreProfile } from "./StoreProfile";
 import Supplier from "./Supplier";
+import { Transfer } from "./Transfer";
 import { User } from "./User";
+import { Vendor } from "./Vendor";
 
 @Entity()
 export default class Store {
@@ -42,4 +44,10 @@ export default class Store {
 
   @OneToMany(() => Supplier, (s) => s.store)
   suppliers: Supplier[];
+
+  @OneToMany(() => Vendor, (v) => v.store)
+  vendors: Vendor[];
+
+  @OneToMany(() => Transfer, (t) => t.store)
+  transfers: Transfer[];
 }

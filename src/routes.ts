@@ -5,6 +5,7 @@ import { StoreController } from "./controller/StoreController";
 import StoreProfileController from "./controller/StoreProfileController";
 import StoreProfile from "./controller/StoreProfileController";
 import { SupplierController } from "./controller/SupplierController";
+import { TransferController } from "./controller/TransferController";
 import { UserController } from "./controller/UserController";
 
 export const Routes = [
@@ -159,6 +160,19 @@ export const Routes = [
     method: "get",
     route: "/suppliers/:id",
     controller: SupplierController,
+    action: "all",
+    isAuthenticated: true,
+  },
+  {
+    method: "post",
+    route: "/transfer",
+    controller: TransferController,
+    action: "save",
+    isAuthenticated: true,
+  },{
+    method: "get",
+    route: "/transfer/:id",
+    controller: TransferController,
     action: "all",
     isAuthenticated: true,
   },

@@ -2,6 +2,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   OneToOne,
@@ -14,6 +15,7 @@ import { ProductTags } from "./ProductTags";
 import { ProductTheme } from "./ProductTheme";
 import ProductVariants from "./ProductVariants";
 import Store from "./Store";
+import { Transfer } from "./Transfer";
 
 export enum ProductStatus {
   "draft" = "draft",
@@ -94,7 +96,7 @@ export class Product {
   })
   sku: number;
 
-  @Column({ 
+  @Column({
     nullable: true,
   })
   barcode: string;
@@ -124,7 +126,9 @@ export class Product {
   })
   options: string;
 
-  @ManyToOne(() => Store, (store) => store.products, {orphanedRowAction:"delete"})
+  @ManyToOne(() => Store, (store) => store.products, {
+    orphanedRowAction: "delete",
+  })
   store: Store;
 
   @OneToMany(() => Collections, (coll) => coll.product)
@@ -151,4 +155,5 @@ export class Product {
     nullable: true,
   })
   seoLink: string;
+
 }
